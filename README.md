@@ -7,7 +7,7 @@
 
 ### Также не забудьте проверить, что репозиторий публичный.
 ---
-Домен на Netlify: https://famous-alfajores-2b6ee4.netlify.app
+Домен на Netlify: https://zesty-bombolone-cb7cfb.netlify.app
 
 Ссылка github https://github.com/achuzhegin/middle.messenger.praktikum.yandex.git
 
