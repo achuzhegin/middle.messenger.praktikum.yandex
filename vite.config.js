@@ -20,6 +20,15 @@ export default defineConfig({
           },
         },
       },
+      css: {
+        preprocessorOptions: {
+            less: {
+                additionalData: '@import "src/components/global.less";',
+              
+              
+            },
+        },
+    },
     plugins: [handlebars({
         context: { username: 'Andrey', },
         partialDirectory: resolve(__dirname, 'src/partials')
