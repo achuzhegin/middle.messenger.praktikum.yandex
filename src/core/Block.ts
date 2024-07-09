@@ -204,3 +204,4 @@ export default class Block {
     this.getContent().style.display = "none";
   }
   }
+  
