@@ -2,10 +2,7 @@
 import Handlebars from 'handlebars';
 import * as Pages from './pages';
 import * as Components from './components'
-// import './style.css'
-// import typescriptLogo from './typescript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.ts'
+
 
 const pages = {  
   'startlist': [ Pages.startlist ],
