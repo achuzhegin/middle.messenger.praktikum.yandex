@@ -19,7 +19,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowUnreachableCode": true
+    "allowUnreachableCode": true,
+    "noImplicitAny":true
   },
  "include": ["src/**/*.ts"],
  "exclude": ["node_modules"]
