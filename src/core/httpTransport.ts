@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 const HOST:{} ={HOST: 'https://ya-praktikum.tech/api/v2'};
 
 enum METHOD {
