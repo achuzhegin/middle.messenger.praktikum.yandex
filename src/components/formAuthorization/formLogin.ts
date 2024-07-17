@@ -6,18 +6,28 @@ import { ButtonSubmit } from "../button/index.ts";
 import CheckingForm from "../modules/checkingForm.ts";
 
 
-export default class FormLogin extends Block {
+interface tProps {
+    Login: InputElement,
+    Password:InputElement,
+    ButtonEnter:ButtonSubmit
+   
     
-    // constructor(props) {
+}
+type tElement = {
+    
+}
+
+
+
+export default class FormLogin extends Block<tProps,tElement> {   
+    // constructor(props:tProps) {
 
     //     super({
-    //         ...props,
-    //         InputLogin: new InputLogin({
-
-    //         })
+    //         ...props
     //     })
 
     // }
+    
     init() {
         const onChangeLoginBind = this.onChangeLogin.bind(this);
         const onChangePasswordBind = this.onChangePassword.bind(this);
@@ -27,9 +37,9 @@ export default class FormLogin extends Block {
         // const Login = new InputLogin({ label: 'Логин', onBlur: onChangeLoginBind });
         // const Password = new InputPassword({ label: 'Пароль', onBlur: onChangePasswordBind });
         // // const ButtonEnter = new ButtonSubmit({ class: 'btn', heading: 'Войти', href: '', onClick: onClickFormLiginBind });
-        const ButtonEnter = new ButtonSubmit({ class: 'btn-authorization', heading: 'Войти', type: 'submit' ,href: '', onSubmit: onSubmitFormLoginBind });
-        const Login = new InputElement({ label: 'Логин', onBlur: onChangeLoginBind, type: 'text', name: 'login', id: 'login', class: 'input-authorization' }); 
-        const Password = new InputElement({ label: 'Пароль', onBlur: onChangePasswordBind, type: 'Password', name: 'Password', id: 'Password', class: 'input-authorization'  });
+        const ButtonEnter:ButtonSubmit = new ButtonSubmit({ class: 'btn-authorization', heading: 'Войти', type: 'submit' ,href: '', onSubmit: onSubmitFormLoginBind });
+        const Login: InputElement = new InputElement({ label: 'Логин', onBlur: onChangeLoginBind, type: 'text', name: 'login', id: 'login', class: 'input-authorization' }); 
+        const Password:InputElement = new InputElement({ label: 'Пароль', onBlur: onChangePasswordBind, type: 'Password', name: 'Password', id: 'Password', class: 'input-authorization'  });
        
         this.children = {
             ...this.children,

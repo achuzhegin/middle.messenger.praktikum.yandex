@@ -4,12 +4,31 @@ import { labelField } from "../../input";
 import { ErrorText } from "../../input";
 
 // import ErrorText from "./error-text";
+type tProps = {
+    type: string,
+    name:string,
+    id: string,
+    class: string,
+    label: string,
+    onBlur: (e: Event) => void,
+    events?: {
+        Blur: (e: Event) => void 
+    },
+    InputField?:InputField,
+    ErrorText?:ErrorText,
+    labelField?:labelField
+    
+}
+type tElement= {
+    InputField:InputField,
+    ErrorText:ErrorText,
+    labelField:labelField
+}
 
 
-
-class InputElement extends Block {
-    //@ts-ignore
-    constructor(props) {
+class InputElement extends Block<tProps,tElement> {
+   
+    constructor(props:tProps) {
         super({
             ...props,
             InputField: new InputField({...props,
@@ -32,7 +51,7 @@ class InputElement extends Block {
             return false;
         }
 
-        this.children.ErrorText.setProps(newProps);
+        this.children.ErrorText!.setProps(newProps);
         return true;
     }
 

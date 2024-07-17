@@ -1,5 +1,5 @@
 import Block from "../../core/Block";
-interface Ref {
+interface tProps {
     type: string,
     class:string,
     label?: string,
@@ -12,9 +12,14 @@ interface Ref {
     
 }
 
-class ButtonSubmit extends Block {
+
+type tElement = {
+   
+}
+
+class ButtonSubmit extends Block<tProps,tElement> {
     
-    constructor(props: Ref) {
+    constructor(props: tProps) {
         super({
             ...props,
             events: {

@@ -1,7 +1,15 @@
 import Block from "../../core/Block"
-export default class FormMain extends Block {
-    //@ts-ignore
-    constructor(props) {       
+type tProps = {
+   
+    
+}
+type tElement= {
+    
+    
+}
+export default class FormMain extends Block<tProps,tElement> {
+    
+    constructor(props:tProps) {       
 
         super(props)
     }

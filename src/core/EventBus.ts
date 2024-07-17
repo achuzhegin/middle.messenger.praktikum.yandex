@@ -1,5 +1,4 @@
-//@ts-nocheck
-
+// @ts-nocheck
 export default class EventBus {
     constructor() {
         this.listeners = {};

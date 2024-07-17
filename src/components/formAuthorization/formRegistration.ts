@@ -5,9 +5,24 @@ import { ButtonSubmit } from "../button/index.ts";
 
 import CheckingForm from "../modules/checkingForm.ts";
 
+type tProps = {
+    Email:InputElement,
+    FirstName:InputElement,
+    SecondName:InputElement,
+    Phone:InputElement,
+    Password:InputElement,
+    newPassword:InputElement,
+    ButtonEnter:ButtonSubmit,
 
-export default class FormRegistration extends Block {
-    //@ts-ignore
+    
+    
+}
+type tElement= {
+    
+    
+}
+export default class FormRegistration extends Block<tProps,tElement> {
+    
     // constructor(props) {
 
     //     super({

@@ -4,11 +4,21 @@ import { ButtonSubmit } from "../button/index.ts";
 import * as Pages from '../../pages/index.ts';
 
 
+type tProps = {
+    
+    Message:InputElement,
+    ButtonEnter:ButtonSubmit
+    
+    
+}
+type tElement= {
+   
+    
+}
 
 
 
-
-export default class FormChat extends Block {
+export default class FormChat extends Block<tProps,tElement> {
     tr:{}={};
     // constructor(props:Ref) {
 
@@ -16,13 +26,13 @@ export default class FormChat extends Block {
     //     }
     init() {
 
+        const onChangeMessageBind = this.onChangeMessage.bind(this);
 
-
-        const Message = new InputElement({ type: 'textarea', name: 'message', id: 'message', class: 'textarea' });
+        const Message:InputElement = new InputElement({ type: 'textarea', name: 'message', id: 'message', class: 'textarea', onBlur: onChangeMessageBind });
 
 
         const ButtonProfileBind = this.onButtonProfile.bind(this);
-        const ButtonEnter = new ButtonSubmit({ class: 'btn-profile', heading: 'Профиль', type: 'button', href: '', onSubmit: ButtonProfileBind });
+        const ButtonEnter:ButtonSubmit= new ButtonSubmit({ class: 'btn-profile', heading: 'Профиль', type: 'button', href: '', onSubmit: ButtonProfileBind });
 
 
 
@@ -34,6 +44,13 @@ export default class FormChat extends Block {
 
 
         }
+    }
+
+    onChangeMessage(e: Event) {
+        if (e.target == null) {
+            return;
+        }
+        
     }
 
 

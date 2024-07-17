@@ -1,6 +1,13 @@
 import Block from "../../core/Block";
+type tProps= {
+    
+}
 
-class ErrorText extends Block {
+type tElement = {
+    input: HTMLLabelElement
+}
+
+class ErrorText extends Block<tProps,tElement> {
     //@ts-ignore
     render(): string {
         return (`

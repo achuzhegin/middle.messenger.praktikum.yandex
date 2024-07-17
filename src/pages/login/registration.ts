@@ -1,14 +1,23 @@
 
 import Block from "../../core/Block"
 import { FormRegistration, FormMain } from "../../components"
-export default class Registration extends Block {
+type tProps = {
+   
+    FormMain:FormMain,    
+    
+}
+type tElement= {
+    
+    
+}
+export default class Registration extends Block<tProps,tElement> {
     constructor(props:{}) {
 
         super({
             ...props,
             FormMain: new FormMain({
                 title: 'Вход', classMain: 'formAuthorization',
-                FormContent: new FormRegistration({})
+                FormContent: new FormRegistration()
             })
         })
 

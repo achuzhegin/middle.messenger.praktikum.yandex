@@ -1,13 +1,15 @@
-//@ts-nocheck
-
+// @ts-nocheck
 import EventBus from "./EventBus";
 import {nanoid} from 'nanoid';
 import Handlebars from "handlebars";
 export type RefType = {
-  [key: string]: Element | Block<object>
+  [key: string]: Element | Block 
 }
-
-export default class Block {
+export type PropsType = {
+  [key: string]: Element | Block | string
+}
+// Props extends PropsType =any, RefType = {}
+export default class Block<Props extends Record<string, any> = any, RefType = any> {
     static EVENTS = {
       INIT: "init",
       FLOW_CDM: "flow:component-did-mount",
@@ -15,10 +17,13 @@ export default class Block {
       FLOW_RENDER: "flow:render"
     };
   
-  _element = null;
+ 
   _meta = null;
   _id = nanoid(6);
-  children: RefType;
+  children: Props;
+  eventBus: () => EventBus;
+  props: Props;
+  _element: HTMLElement | null = null;
   
   /** JSDoc
      * @param {string} tagName
@@ -27,16 +32,29 @@ export default class Block {
      * @returns {void}
      */
 
-  private _eventbus;
+  // private _eventbus: EventBus;
   
 
-  constructor(propsWithChildren = {}) {
+  constructor(propsWithChildren: Props = {} as Props) {
     const eventBus = new EventBus();
     // this._meta = {
     //   tagName,
     //   props
     // };
-    const {props, children} = this._getChildrenAndProps(propsWithChildren);
+    const children: Props = {} as Props;
+    const props: Props = {} as Props;
+
+    Object.entries(propsWithChildren).forEach(([key, value]) => {
+    if (value instanceof Block) {
+            children[key] = value;
+    } else {
+            props[key] = value;
+        }
+    });
+
+
+    // const {props, children} = this._getChildrenAndProps(propsWithChildren);
+    
     this.props = this._makePropsProxy({ ...props });
     this.children = children;
   
@@ -54,6 +72,7 @@ export default class Block {
       this._element.addEventListener(eventName, events[eventName]);
   })
  }
+ 
   
   _registerEvents(eventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
@@ -63,7 +82,7 @@ export default class Block {
   }
   
   _createResources() {
-    const { tagName } = this._meta;
+    const tagName = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
   
@@ -106,9 +125,9 @@ export default class Block {
     return true;
   }
 
-  _getChildrenAndProps(propsAndChildren):{} {
-    const children = {};
-    const props = {};
+  _getChildrenAndProps(propsAndChildren:Props = {} as Props):{} {
+    const children: Props = {} as Props;
+    const props: Props = {} as Props;
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
     if (value instanceof Block) {
@@ -121,7 +140,7 @@ export default class Block {
     return { children, props };
   }
  
-  setProps = nextProps => {
+  setProps = (nextProps: any) => {
     if (!nextProps) {
       return;
     }
@@ -132,7 +151,15 @@ export default class Block {
   get element() {
     return this._element;
   }
-  
+  _removeEvents() {
+    const {events = {}} = this.props;
+    if (this._element) {
+    Object.keys(events).forEach(eventName => {
+      this._element.removeEventListener(eventName, events[eventName].name.split(' ')[1]+'()');
+    
+  })
+}
+  }
   _render() {
     const propsAndStubs = { ...this.props };
 
@@ -141,7 +168,7 @@ export default class Block {
     });
 
     const fragment = this._createDocumentElement('template');
-
+    this._removeEvents();
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
     const newElement = fragment.content.firstElementChild;
 
@@ -150,7 +177,7 @@ export default class Block {
         
         stub?.replaceWith(child.getContent());
     });
-
+    
     if (this._element) {
         this._element.replaceWith(newElement);
       }
@@ -159,6 +186,7 @@ export default class Block {
 
     this._addEvents();
   }
+ 
   
   render() {}
   

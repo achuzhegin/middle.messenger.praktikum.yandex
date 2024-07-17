@@ -1,25 +1,32 @@
 import Block from "../../core/Block";
 import {InputField} from "../input";
-import {ErrorText} from "../input";
+ import {ErrorText} from "../input";
 // import ErrorText from "./error-text";
 
-interface Ref {
-   
-    onBlur?: (e: Event) => void,
+
+type tProps = {
+    onBlur: (e: Event) => void,
     events?: {
-        onBlur: (e: Event) => void
-    }
+        Blur: (e: Event) => void 
+    },
+    InputField?:InputField,
+    ErrorText?:ErrorText,
+    
+    
+}
+type tElement= {
+   
     
 }
 
-class InputPassword extends Block {
-    //@ts-ignore
-    constructor(props:Ref) {
+class InputPassword extends Block<tProps,tElement> {
+    
+    constructor(props:tProps) {
         super({
             ...props,
-            InputField: new InputField({
+            InputField: new InputField({...props,
                 events: {
-                    blur: props.onBlur || (() => {}) 
+                    blur: props.onBlur || (() => { })
                 },
                 type: 'password', name: 'Password', id: 'Password'
                 
@@ -34,7 +41,7 @@ class InputPassword extends Block {
             return false;
         }
 
-        this.children.ErrorText.setProps(newProps);
+        this.children.ErrorText!.setProps(newProps);
         return true;
     }
 

@@ -1,5 +1,5 @@
 export {link} from './link'
-// export {input} from './input'
+// export {InputElement} from './input'
 export {button} from './button'
 export {FormLogin,FormRegistration} from './formAuthorization'
 export {FormMain, FormFoto} from './formMain'

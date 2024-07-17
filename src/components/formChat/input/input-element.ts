@@ -5,22 +5,32 @@ import { ErrorText } from "../../input";
 
 // import ErrorText from "./error-text";
 
-interface Ref {
+
+interface tProps  {
     type: string,
     name:string,
-    id?: string,
+    id: string,
     class: string,
     label?: string,
-    onBlur?: (e: Event) => void,
+    onBlur: (e: Event) => void,
     events?: {
-        onBlur: (e: Event) => void
-    }
+        Blur: (e: Event) => void 
+    },
+    // input: HTMLInputElement,
+    InputField?:InputField,
+    ErrorText?:ErrorText,
+    labelField?:labelField
     
 }
+type tElement= {
+    // InputField:InputField,
+    // ErrorText:ErrorText,
+    // labelField:labelField
+}
 
-class InputElement extends Block {
+class InputElement extends Block<tProps,tElement> {
     
-    constructor(props:Ref) {
+    constructor(props:tProps) {
         super({
             ...props,
             InputField: new InputField({...props,
@@ -43,7 +53,7 @@ class InputElement extends Block {
             return false;
         }
 
-        this.children.ErrorText.setProps(newProps);
+        this.children.ErrorText!.setProps(newProps);
         return true;
     }
 

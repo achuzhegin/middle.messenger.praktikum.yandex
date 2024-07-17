@@ -5,19 +5,27 @@ import { ButtonSubmit } from "../button/index.ts";
 import CheckingForm from "../modules/checkingForm.ts";
 // import * as Pages from '../../pages/index.ts';
 
+type tProps = {
+    Password?:InputElement,
+    newPassword?:InputElement,
+    confirmationPassword?:InputElement,
+    ButtonEnter?:ButtonSubmit
 
-export default class FormPassword extends Block {
-    //@ts-ignore
-    // constructor(props) {
+   
+    
+}
+type tElement = {
+    
+}
+export default class FormPassword extends Block<tProps,tElement> {
+    // constructor(props:tProps) {
 
     //     super({
-    //         ...props,
-    //         InputLogin: new InputLogin({
-
-    //         })
+    //         ...props
     //     })
 
     // }
+    
     init() {
         // const onChangeLoginBind = this.onChangeLogin.bind(this);
         // const onChangePasswordBind = this.onChangePassword.bind(this);
@@ -25,18 +33,18 @@ export default class FormPassword extends Block {
         
         
         const onChangePasswordBind = this.onChangePassword.bind(this);        
-        const Password = new InputElement({ label: 'Пароль', onBlur: onChangePasswordBind, type: 'password', name: 'oldPassword', id: 'oldPassword', class: 'input-profile'});
+        const Password:InputElement = new InputElement({ label: 'Пароль', onBlur: onChangePasswordBind, type: 'password', name: 'oldPassword', id: 'oldPassword', class: 'input-profile'});
 
         const onChangeNewPasswordBind = this.onChangeNewPassword.bind(this);        
-        const newPassword = new InputElement({ label: 'Новый пароль', onBlur: onChangeNewPasswordBind, type: 'password', name: 'newPassword', id: 'newPassword', class: 'input-profile' });
+        const newPassword:InputElement = new InputElement({ label: 'Новый пароль', onBlur: onChangeNewPasswordBind, type: 'password', name: 'newPassword', id: 'newPassword', class: 'input-profile' });
 
         const onChangeConfirmationPasswordBind = this.onChangeConfirmationPassword.bind(this);        
-        const confirmationPassword = new InputElement({ label: 'Подтвердите новый пароль', onBlur: onChangeConfirmationPasswordBind , type: 'password', name: 'confirmationPassword', id: 'confirmationPassword', class: 'input-profile'});
+        const confirmationPassword:InputElement = new InputElement({ label: 'Подтвердите новый пароль', onBlur: onChangeConfirmationPasswordBind , type: 'password', name: 'confirmationPassword', id: 'confirmationPassword', class: 'input-profile'});
 
 
         // const ButtonEnter = new ButtonSubmit({ class: 'btn', heading: 'Войти', href: '', onClick: onClickFormLiginBind });
         const onSubmitFormLoginBind = this.onSubmitForm.bind(this);
-        const ButtonEnter = new ButtonSubmit({ class: 'btn-profile', heading: 'Войти', type: 'submit' ,href: '', onSubmit: onSubmitFormLoginBind });
+        const ButtonEnter:ButtonSubmit = new ButtonSubmit({ class: 'btn-profile', heading: 'Войти', type: 'submit' ,href: '', onSubmit: onSubmitFormLoginBind });
 
 
         this.children = {
@@ -94,12 +102,12 @@ export default class FormPassword extends Block {
         const x = new CheckingForm;
         const result = x.checkingPassword(str);
         if (result.error) {
-            this.children.Password.setProps({ error: true, errorLabel: result.errorText });
+            this.children.Password!.setProps({ error: true, errorLabel: result.errorText });
 
 
         }
         else {
-            this.children.Password.setProps({ error: false, errorLabel: null });
+            this.children.Password!.setProps({ error: false, errorLabel: null });
 
         }
         return result.error;
@@ -109,12 +117,12 @@ export default class FormPassword extends Block {
         const x = new CheckingForm;
         const result = x.checkingPassword(str);
         if (result.error) {
-            this.children.newPassword.setProps({ error: true, errorLabel: result.errorText });
+            this.children.newPassword!.setProps({ error: true, errorLabel: result.errorText });
 
 
         }
         else {
-            this.children.newPassword.setProps({ error: false, errorLabel: null });
+            this.children.newPassword!.setProps({ error: false, errorLabel: null });
 
         }
         return result.error;
@@ -124,12 +132,12 @@ export default class FormPassword extends Block {
         const x = new CheckingForm;
         const result = x.checkingPassword(str);
         if (result.error) {
-            this.children.confirmationPassword.setProps({ error: true, errorLabel: result.errorText });
+            this.children.confirmationPassword!.setProps({ error: true, errorLabel: result.errorText });
 
 
         }
         else {
-            this.children.confirmationPassword.setProps({ error: false, errorLabel: null });
+            this.children.confirmationPassword!.setProps({ error: false, errorLabel: null });
 
         }
         return result.error;

@@ -1,6 +1,14 @@
 //@ts-ignore
 import Block from "../../core/Block"
-export default class FormFoto extends Block {
+type tProps = {
+   
+    
+}
+type tElement= {
+    
+    
+}
+export default class FormFoto extends Block<tProps,tElement>  {
     
     // constructor(props) {       
 

@@ -1,6 +1,13 @@
 import Block from "../../core/Block";
+type tProps= {
+    
+}
 
-class labelField extends Block {
+type tElement = {
+    input: HTMLLabelElement
+}
+
+class labelField extends Block<tProps, tElement> {
     //@ts-ignore
     // constructor(props) {
     //     super(props)

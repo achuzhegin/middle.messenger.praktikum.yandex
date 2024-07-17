@@ -1,6 +1,15 @@
 import Block from "../../core/Block"
 import { FormSetting, FormMain, FormFoto } from "../../components"
-export default class Setting extends Block {
+type tProps = {
+   
+    FormMain:FormMain,    
+    FormFoto:FormFoto
+}
+type tElement= {
+    
+    
+}
+export default class Setting extends Block<tProps,tElement> {
     constructor(props:{}) {
 
         super({
