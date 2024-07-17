@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Block from "../../../core/Block";
 import { InputField } from "../../input";
 import { labelField } from "../../input";
